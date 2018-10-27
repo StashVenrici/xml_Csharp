@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Text.RegularExpressions;
 	
 
 namespace Xml
@@ -12,8 +13,9 @@ namespace Xml
         static void Main(string[] args)
         {
             Console.WriteLine("XML");
-            CreateXMLFile();
-            ReadXMLFile();
+            //CreateXMLFile();
+            //ReadXMLFile();
+            RegexSample();
 
             Console.ReadKey();
         }
@@ -48,6 +50,20 @@ namespace Xml
             }
             fs.Close();
             Console.WriteLine("End of file.");
+        }
+
+        public static void RegexSample() { 
+        
+            Regex regex = new Regex(@"\d+");
+            Match match = regex.Match("Dot 25 Step 35 value 40 step 3 digit 41");
+            if (match.Success)
+            {
+                Console.WriteLine(match.Value);
+                //показываем следующий
+                //если нужно показать все, надо закинуть в цикл!!!!
+                var a = match.NextMatch().Value;
+                Console.WriteLine(a);
+            }
         }
     }
 }
